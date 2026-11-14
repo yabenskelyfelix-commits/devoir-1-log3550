@@ -1,0 +1,334 @@
+/* --- Variables globales --- */
+:root {
+  --primary-color: #0216ad;
+  --primary-hover: #4fcde3;
+  --bg-color: #b7c6d5;
+  --card-bg: #ffffff;
+  --text-main: #000000;
+  --text-muted: #0c0e0f;
+  --border-color: #0228ff;
+  --danger-color: #c40000;
+}
+
+/* --- Style général --- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --- Barre de navigation / Header --- */
+header {
+  background-color: var(--primary-color);
+  color: rgb(255, 255, 255);
+  box-shadow: 0 2px 4px rgba(121, 73, 73, 0.05);
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header-container h1 {
+  font-size: 1.35rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.5rem 0.5rem;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  background: var(--primary-hover);
+}
+
+/* --- Conteneur principal --- */
+main {
+  max-width: 1200px;
+  width: 100%;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+  flex: 1;
+}
+
+section {
+  margin-bottom: 4rem;
+}
+
+/* --- En-tête de section & Filtres --- */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.section-header h2,
+#ajout h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.filtres {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.filtres input,
+.filtres select {
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background-color: var(--card-bg);
+  color: var(--text-main);
+}
+
+.filtres input {
+  min-width: 260px;
+}
+
+.filtres input:focus,
+.filtres select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(224, 234, 237, 0.15);
+}
+
+/* --- Grille des livres --- */
+.grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.livre-carte {
+  background-color: var(--card-bg, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+}
+
+.livre-carte:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Titre et textes de la carte */
+.livre-carte h3 {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin: 0.75rem 0 0.5rem 0;
+  color: var(--text-main, #1e293b);
+}
+
+.livre-carte p {
+  color: var(--text-muted, #fcfdfe);
+  font-size: 0.875rem;
+  margin: 0.25rem 0;
+  line-height: 1.4;
+}
+
+/* Badges de disponibilité */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  align-self: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.badge.dispo {
+  background-color: #bbccf3; 
+  color: #010cde; 
+}
+
+.badge.indispo {
+  background-color: #fee2e2; /* Rouge clair */
+  color: #991b1b; /* Rouge foncé */
+}
+
+/* Tag de catégorie */
+.categorie-tag {
+  display: inline-block;
+  background-color: #b8b6e8;
+  color: #ffffff;
+  padding: 0.20rem 0.6rem;
+  border-radius: 60px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  align-self: flex-start;
+}
+
+/* Bouton de suppression spécifique à la carte */
+.livre-carte .btn-danger {
+  background: none;
+  border: none;
+  color: var(--danger-color, #f30909);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0;
+  align-self: flex-end;
+  margin-top: 0.5rem;
+}
+
+.livre-carte .btn-danger:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+/* --- Section Formulaire d'ajout --- */
+#ajout {
+  max-width: 750px;
+  margin: 0 auto 3rem auto;
+}
+
+#ajout h2 {
+  margin-bottom: 1.25rem;
+}
+
+.formulaire {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 0.1px ;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: #e1f0ff;
+  color: var(--text-main);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(42, 189, 247, 0.15);
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--primary-color);
+  cursor: pointer;
+}
+
+.checkbox-group label {
+  margin-bottom: 0;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+/* --- Footer --- */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  color: #ffffff;
+  font-size: 0.875rem;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--primary-color);
+}
+
+/* --- Conteneur Notifications (Toasts) --- */
+#toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 1000;
+}

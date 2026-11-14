@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bibliothèque Le Jacmelien</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-cover bg-center bg-no-repeat min-h-screen text-slate-900" style="background-image: url('public/fond-bibliotheque.jpg');">  
+  
+  <!-- Voile blanc semi-transparent pour garder le contenu bien lisible par-dessus l'image -->
+  <div class="min-h-screen bg-white/90 backdrop-blur-xs p-6">
+    <main class="max-w-5xl mx-auto space-y-8">
+      
+      <!-- En-tête -->
+      <header class="flex flex-col md:flex-row justify-between items-center gap-4 bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+        <div>
+          <h1 class="text-2xl font-bold text-slate-900">Bibliothèque Le Jacmelien</h1>
+          <p class="text-sm text-slate-600 mt-0.5">Gestion du Catalogue de Livres</p>
+        </div>
+        <button id="reset-btn" class="bg-rose-500 hover:bg-rose-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition cursor-pointer">
+          Réinitialiser les données
+        </button>
+      </header>
+
+      <!-- Filtres et Recherche -->
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div>
+          <label for="search" class="block text-sm font-medium text-slate-700 mb-1">Recherche</label>
+          <input type="text" id="search" placeholder="Titre ou auteur..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+        </div>
+        <div>
+          <label for="category-filter" class="block text-sm font-medium text-slate-700 mb-1">Catégorie</label>
+          <select id="category-filter" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            <option value="">Toutes les catégories</option>
+          </select>
+        </div>
+        <div>
+          <label for="sort-by" class="block text-sm font-medium text-slate-700 mb-1">Trier par</label>
+          <select id="sort-by" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            <option value="titre-asc">Titre (A-Z)</option>
+            <option value="titre-desc">Titre (Z-A)</option>
+            <option value="annee-desc">Année (Récent > Ancien)</option>
+            <option value="annee-asc">Année (Ancien > Récent)</option>
+          </select>
+        </div>
+        <div class="flex items-end">
+          <label class="flex items-center space-x-2 cursor-pointer pb-2">
+            <input type="checkbox" id="available-only" class="rounded border-slate-300 text-blue-600 focus:ring-blue-500 w-4 h-4">
+            <span class="text-sm font-medium text-slate-700">Disponibles seulement</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Formulaire d'ajout -->
+      <section class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+        <h2 class="text-lg font-semibold mb-4 text-slate-900">Ajouter un nouveau livre</h2>
+        <form id="add-book-form" class="grid grid-cols-1 md:grid-cols-5 gap-4" novalidate>
+          <div class="md:col-span-1">
+            <label for="input-titre" class="block text-sm font-medium text-slate-700">Titre</label>
+            <input type="text" id="input-titre" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm mt-1" aria-describedby="error-titre">
+            <span id="error-titre" class="text-xs text-rose-500 mt-1 block" aria-live="polite"></span>
+          </div>
+          <div class="md:col-span-1">
+            <label for="input-auteur" class="block text-sm font-medium text-slate-700">Auteur</label>
+            <input type="text" id="input-auteur" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm mt-1" aria-describedby="error-auteur">
+            <span id="error-auteur" class="text-xs text-rose-500 mt-1 block" aria-live="polite"></span>
+          </div>
+          <div class="md:col-span-1">
+            <label for="input-annee" class="block text-sm font-medium text-slate-700">Année</label>
+            <input type="number" id="input-annee" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm mt-1" aria-describedby="error-annee">
+            <span id="error-annee" class="text-xs text-rose-500 mt-1 block" aria-live="polite"></span>
+          </div>
+          <div class="md:col-span-1">
+            <label for="input-categorie" class="block text-sm font-medium text-slate-700">Catégorie</label>
+            <input type="text" id="input-categorie" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm mt-1" aria-describedby="error-categorie">
+            <span id="error-categorie" class="text-xs text-rose-500 mt-1 block" aria-live="polite"></span>
+          </div>
+          <div class="flex items-end md:col-span-1">
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg text-sm transition cursor-pointer">
+              Ajouter
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Résultats & Liste des livres -->
+      <div class="space-y-4">
+        <div id="results-count" class="text-sm font-medium text-slate-700" aria-live="polite"></div>
+        <div id="books-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Les cartes sont générées dynamiquement ici -->
+        </div>
+        <div id="empty-state" class="hidden bg-white p-8 rounded-xl text-center text-slate-500 shadow-sm border border-slate-100">
+          Aucun livre ne correspond à vos critères de recherche.
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
