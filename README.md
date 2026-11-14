@@ -1,5 +1,7 @@
 # Devoir 1 : Catalogue de Bibliothèque (LOG3550) - Bibliothèque Le Jacmelien
 
+Lien GitHub : https://github.com/yabenskelyfelix-commits/devoir-1-log3550 
+
 ## Description du projet
 Ce projet consiste à développer le frontend d'une application web de gestion de catalogue de bibliothèque. L'application permet de consulter les livres de départ, d'effectuer des recherches dynamiques en temps réel (insensibles à la casse et aux accents), de filtrer par catégorie ou par disponibilité, de trier les éléments (par titre ou par année), ainsi que d'ajouter et de supprimer des livres de manière interactive sans recharger la page. Les données sont persistées dans le navigateur grâce au `localStorage`.
 
