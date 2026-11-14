@@ -28,7 +28,8 @@ Les balises sémantiques (`<header>`, `<main>`, `<section>`, etc.) donnent un se
 ##  Difficultés rencontrées
 * **Gestion de la recherche insensible aux accents :** L'utilisation de la fonction de normalisation (`normalize("NFD")`) a nécessité une attention particulière pour nettoyer correctement les caractères diacritiques lors de la saisie utilisateur.
 * **Validation rigoureuse du formulaire :** J'ai du m'assurer que chaque contrainte (longueur minimale du titre et de l'auteur, intervalle d'années valide entre 1450 et l'année en cours) s'affiche correctement sous forme de messages d'erreur accessibles sans bloquer l'expérience utilisateur.
-* **Erreur d'affichage de l'image de fond :** J'ai eu un gros probleme avec cette situation. J'ai mis l'image dans `/public` et l'appeler depuis le fichier html.  
+* **Erreur d'affichage de l'image de fond :** J'ai eu un gros probleme avec cette situation. J'ai mis l'image dans `/public` et l'appeler depuis le fichier html.
+* **Passer master comme `default branch` :** J'ai tout poussé sur la branche master, ainsi je devais mettre master comme la branche par défaut, cela m'as pris quelque minutes. 
 
 ##  Sources et Outils d'assistance
 * **Cours et supports de l'ISTEAH :** Enseignements dispensés par le professeur Samuel Jonathan Joseph dans le cadre du cours *LOG3550 Développement web* ainsi que l'énoncé du devoir 1.
